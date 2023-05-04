@@ -50,7 +50,10 @@ public class MyFileClassLoader extends ClassLoader {
 
 
     public static void main(String[] args) throws ClassNotFoundException {
+        // 当传入的parent为null的时候，真实的parent为什么
         MyFileClassLoader myFileClassLoader1 = new MyFileClassLoader("/Users/projects/classloadertest/target/classes/",null);
+        final ClassLoader parent = myFileClassLoader1.getParent();
+        System.out.println("parent is " + parent);
         MyFileClassLoader myFileClassLoader2 = new MyFileClassLoader("/Users/projects/classloadertest/target/classes/",myFileClassLoader1);
         Class clazz1 = myFileClassLoader1.loadClass("com.test.Demo");
         Class clazz2 = myFileClassLoader2.loadClass("com.test.Demo");
